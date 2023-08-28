@@ -1,4 +1,7 @@
-// import { Link } from "react-router-dom"
+import {
+    Card,
+    Typography,
+} from "@material-tailwind/react";
 
 import { Link } from "react-router-dom"
 
@@ -10,25 +13,28 @@ type Props = {
 export default function Sidebar({ isOpen, onClose }: Props) {
 
     return (
-        <div className={`fixed flex flex-col z-10 top-0 left-0 h-full py-4 px-6 w-64 bg-gray-800 text-white transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        // <div className={`fixed flex flex-col z-30 top-0 left-0 h-full py-4 px-6 w-64 bg-gray-800 text-white shadow-xl shadow-blue-gray-900/5 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <Card className={`fixed flex flex-col z-30 top-0 left-0 h-full py-4 px-6 w-64 shadow-xl shadow-blue-gray-900/5 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
             <div className="flex flex-row justify-between align-left text-lg font-semibold">
-                Awards Menu
-                <button className="text-white font-bold" onClick={onClose}>×</button>
+                <Typography variant="h3">
+                    Awards Menu
+                </Typography>
+                <button className="font-bolder" onClick={onClose}>×</button>
             </div>
             <div className="flex flex-col justify-start gap-4 mt-8">
-                <div>
-                    <Link to='/home' onClick={onClose}>Home</Link>
-                </div>
-                <div>
-                    <Link to='/cards' onClick={onClose}>Cards</Link>
-                </div>
-                <div>
-                    <Link to='/profile' onClick={onClose}>Profile</Link>
-                </div>
-                <div>
-                    <Link to='/logout' onClick={onClose}>Logout</Link>
-                </div>
+                <Typography variant="lead">
+                    <Link className="" to='/home' onClick={onClose}>Home</Link>
+                </Typography>
+                <Typography variant="lead" className="disabled">
+                    <button className="disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Cards</button>
+                </Typography>
+                <Typography variant="lead">
+                    <button className="disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Profile</button>
+                </Typography>
+                <Typography variant="lead" className="disabled">
+                    <Link className="" to='/logout' onClick={onClose}>Logout</Link>
+                </Typography>
             </div>
-        </div>
+        </Card>
     )
 }

@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import './assets/stylesheets/index.css'
 import Home from "./views/Home/Home"
 import Sidebar from "./components/Sidebar/Sidebar"
-import Navbar from "./components/Navbar/Navbar"
+import Filter from "./components/Filter/Filter"
+import PageNavbar from "./components/Navbar/Navbar"
 
 function App() {
 
@@ -29,12 +30,10 @@ function App() {
   return (
     <div id="app">
       <BrowserRouter>
-        <Navbar onClickLeftMenu={handleBurgerClick} onClickRightMenu={handleFilterClick} />
+        <PageNavbar onClickLeftMenu={handleBurgerClick} onClickRightMenu={handleFilterClick} />
         <Sidebar isOpen={isSidebarOpen} onClose={handleSidebarClose} />
-
-        {isFilterModalOpen && (
-          <div className="fixed top-0 left-0 w-full h-full bg-gray-800 opacity-50 z-10" onClick={handleFilterModalClose}></div>
-        )}
+        <Filter isOpen={isFilterModalOpen} onClose={handleFilterModalClose} />
+        
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/cards" element={<>Cards</>} />
