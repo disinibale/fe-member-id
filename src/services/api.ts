@@ -1,5 +1,9 @@
 import axios from 'axios';
 
+export interface ISignIn {
+    email: string
+}
+
 export interface IAward {
     id: number;
     award_type: string;
@@ -15,14 +19,15 @@ const api = axios.create({
 })
 
 
-export async function fetchSignIn()  {
+export async function fetchSignIn(data: ISignIn)  {
     try { 
-        const response = await api.post('/auth/login')
+        const response = await api.post('/auth/login', data)
 
         console.log(response.data.data)
         return response.data
     } catch (err) {
-        throw new Error('Error while authenticating in user! : ' + err)
+        console.log(err)
+        throw err
     }   
 }
 
@@ -32,7 +37,7 @@ export async function fetchAwardsData(page: number): Promise<IAward[]> {
         return response.data as IAward[]
     } catch (err) {
         console.log(err)
-        throw new Error('Error while authenticating in user! : ' + err)
+        throw new Error('Error while getting data! : ' + err)
     }
 }
 

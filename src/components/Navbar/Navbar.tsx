@@ -15,20 +15,6 @@ export default function PageNavbar({
     onClickRightMenu
 }: Props) {
     return (
-        // <div className="flex justify-between items-center bg-blue-500 py-4 px-6">
-        //     <button
-        //         className="text-white font-bold"
-        //         onClick={onClickLeftMenu}
-        //     >
-        //         ☰
-        //     </button>
-        //     <button
-        //         className="text-white font-bold"
-        //         onClick={onClickRightMenu}
-        //     >
-        //         Filter
-        //     </button>
-        // </div>
         <Navbar className='sticky top-0 z-20 py-5 px-4 lg:px-8 text-black flex flex-row justify-between'>
             <button onClick={onClickLeftMenu}>
                 <span>

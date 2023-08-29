@@ -8,9 +8,10 @@ import { Link } from "react-router-dom"
 type Props = {
     isOpen: boolean
     onClose: () => void
+    onLogout: () => void
 }
 
-export default function Sidebar({ isOpen, onClose }: Props) {
+export default function Sidebar({ isOpen, onClose, onLogout }: Props) {
 
     return (
         <>
@@ -20,20 +21,19 @@ export default function Sidebar({ isOpen, onClose }: Props) {
                     <Typography variant="h3">
                         Awards Menu
                     </Typography>
-                    <button className="font-bolder" onClick={onClose}>×</button>
                 </div>
                 <div className="flex flex-col justify-start gap-4 mt-8">
-                    <Typography variant="lead">
-                        <Link className="" to='/home' onClick={onClose}>Home</Link>
+                    <Typography variant="lead" className="w-full">
+                        <Link className="w-full text-left " to='/' onClick={onClose}>Home</Link>
                     </Typography>
-                    <Typography variant="lead" className="disabled">
-                        <button className="disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Cards</button>
+                    <Typography variant="lead" className="disabled w-full">
+                        <button className="w-full text-left disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Cards</button>
                     </Typography>
-                    <Typography variant="lead">
-                        <button className="disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Profile</button>
+                    <Typography variant="lead" className="w-full">
+                        <button className="w-full text-left disabled:text-gray-500 cursor-not-allowed" disabled={true} onClick={onClose}>Profile</button>
                     </Typography>
-                    <Typography variant="lead" className="disabled">
-                        <Link className="" to='/logout' onClick={onClose}>Logout</Link>
+                    <Typography variant="lead" className="disabled w-full">
+                        <button className="w-full text-left " onClick={onLogout}>Logout</button>
                     </Typography>
                 </div>
             </Card>
