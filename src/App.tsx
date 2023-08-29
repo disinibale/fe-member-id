@@ -15,6 +15,28 @@ function App() {
   const [user, setUser] = useState<string | null>(null)
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [isFilterModalOpen, setFilterModalOpen] = useState(false);
+  const [filterOptions, setFilterOptions] = useState<{
+    pointNeeded: number
+    voucherType: {
+      all: boolean,
+      vouchers: boolean,
+      products: boolean,
+      others: boolean
+    }
+  }>({
+    pointNeeded: 0,
+    voucherType: {
+      all: false,
+      products: false,
+      vouchers: false,
+      others: false,
+    }
+  })
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const applyFiterOptions = (filters: any) => {
+    setFilterOptions(filters)
+  }
 
   const handleBurgerClick = () => {
     setSidebarOpen(true);
@@ -67,10 +89,13 @@ function App() {
         <>
           <PageNavbar onClickLeftMenu={handleBurgerClick} onClickRightMenu={handleFilterClick} />
           <Sidebar isOpen={isSidebarOpen} onClose={handleSidebarClose} onLogout={handleLogoutButton} />
-          <Filter isOpen={isFilterModalOpen} onClose={handleFilterModalClose} />
+          <Filter
+            handleFilterButton={applyFiterOptions}
+            isOpen={isFilterModalOpen}
+            onClose={handleFilterModalClose} />
 
           <Routes>
-            <Route index path="/" element={<Home />} />
+            <Route index path="/" element={<Home apiFilters={filterOptions} />} />
             <Route path="/logout" element={<>Logout</>} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -5,7 +5,9 @@ import Card from "../../components/Card/Card";
 
 import { IAward, fetchAwardsData } from "../../services/api";
 
-export default function Home() {
+type Props = { apiFilters: { pointNeeded: number; voucherType: { all: boolean; vouchers: boolean; products: boolean; others: boolean; }; }; }
+
+export default function Home({ apiFilters }: Props) {
   const [awards, setAwards] = useState<IAward[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [loading, setLoading] = useState<boolean>(false)
@@ -21,7 +23,7 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
-  } 
+  }
 
   useEffect(() => {
     fetchData()
@@ -43,13 +45,16 @@ export default function Home() {
     }
   }, [currentPage])
 
+  useEffect(() => {
+    console.log(apiFilters)
+  }, [apiFilters])
   return (
     <ApplicationLayout pageName="home">
       {awards.map((award, index) => (
-        <Card 
+        <Card
           key={index}
-          awardName={award.name} 
-          awardImage={award.image_url} 
+          awardName={award.name}
+          awardImage={award.image_url}
           voucherType={award.award_type}
           pointToRedeem={award.point_needed} />
       ))}

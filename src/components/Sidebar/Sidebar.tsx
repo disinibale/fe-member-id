@@ -16,7 +16,7 @@ export default function Sidebar({ isOpen, onClose, onLogout }: Props) {
     return (
         <>
             <div onClick={onClose} className={`${isOpen ? 'absolute' : 'hidden'} left-0 top-0 min-h-full min-w-full bg-black bg-opacity-40 z-[28]`}></div>
-            <Card className={`fixed flex flex-col z-30 top-0 left-0 h-full py-4 px-6 w-64 shadow-xl shadow-blue-gray-900/5 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <Card className={`bg-white fixed flex flex-col z-30 top-0 left-0 h-full py-4 px-6 w-64 shadow-xl shadow-blue-gray-900/5 transition-transform transform ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="flex flex-row justify-between align-left text-lg font-semibold">
                     <Typography variant="h3">
                         Awards Menu
