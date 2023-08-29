@@ -13,22 +13,49 @@ export default function Home({ apiFilters }: Props) {
   const [loading, setLoading] = useState<boolean>(false)
 
   const fetchData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const newAwards = await fetchAwardsData(currentPage + 1)
-      setAwards((prevAwards) => [...prevAwards, ...newAwards])
+      const { pointNeeded, voucherType } = apiFilters;
+      const awardTypeFilter = getFilterTypesKey(voucherType);
+
+      const newAwards = await fetchAwardsData(currentPage, pointNeeded, awardTypeFilter);
+      setAwards((prevAwards) => [...prevAwards, ...newAwards]);
       setCurrentPage((prevPage) => prevPage + 1)
     } catch (err) {
-      console.log('Error: ', err)
+      console.log('Error: ', err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+
+  const getFilterTypesKey = (filterObject: {
+    all: boolean;
+    vouchers: boolean;
+    products: boolean;
+    others: boolean;
+  }) => {
+    const types: string[] = [];
+    if (filterObject.all) {
+      types.push("all");
+    } else {
+      if (filterObject.vouchers) types.push("vouchers");
+      if (filterObject.products) types.push("products");
+      if (filterObject.others) types.push("giftcard");
+    }
+    return types;
+  };
+
+  
+  useEffect(() => {
+    setCurrentPage(1)
+    setAwards([])
+    fetchData()
+  }, [apiFilters])
 
   useEffect(() => {
     fetchData()
   }, [])
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -45,9 +72,6 @@ export default function Home({ apiFilters }: Props) {
     }
   }, [currentPage])
 
-  useEffect(() => {
-    console.log(apiFilters)
-  }, [apiFilters])
   return (
     <ApplicationLayout pageName="home">
       {awards.map((award, index) => (

@@ -34,7 +34,7 @@ function App() {
   })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const applyFiterOptions = (filters: any) => {
+  const applyFilterOptions = (filters: any) => {
     setFilterOptions(filters)
   }
 
@@ -73,7 +73,6 @@ function App() {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'token' && event.newValue) {
         setUser(event.newValue)
-        console.log('Changed!!!!')
       }
     }
 
@@ -90,7 +89,7 @@ function App() {
           <PageNavbar onClickLeftMenu={handleBurgerClick} onClickRightMenu={handleFilterClick} />
           <Sidebar isOpen={isSidebarOpen} onClose={handleSidebarClose} onLogout={handleLogoutButton} />
           <Filter
-            handleFilterButton={applyFiterOptions}
+            handleFilterButton={applyFilterOptions}
             isOpen={isFilterModalOpen}
             onClose={handleFilterModalClose} />
 

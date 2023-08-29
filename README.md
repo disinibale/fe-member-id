@@ -1,27 +1,35 @@
-# React + TypeScript + Vite
+# Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This frontend application is built using React.js and `react-router-dom`. It provides authentication, award filtering, and implements lazy-loading with infinite scroll.
 
-Currently, two official plugins are available:
+## Prerequisites
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you begin, ensure you have the following installed:
 
-## Expanding the ESLint configuration
+- Node.js and npm
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Clone the Repository
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+git clone https://github.com/disinibale/fe-member-id.git
+cd fe-member-id
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Install the node Modules packages
+```
+npm install
+```
+
+### Setting up the environment variable
+```
+cp .env.example .env
+```
+Change the `VITE_BASE_URL` to your running backend instances, by default the backend application runs at `http://localhost:8000/api/v1`.
+
+### Running the application
+To run the application, you could just simply copy this command to your terminal/command prompt.
+``` bash
+npm run dev
+```
