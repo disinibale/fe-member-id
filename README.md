@@ -33,3 +33,9 @@ To run the application, you could just simply copy this command to your terminal
 ``` bash
 npm run dev
 ```
+
+## Default Credentials
+For Signing in to the application you could use this email : 
+```
+bale@mail.com
+```
